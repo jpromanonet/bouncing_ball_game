@@ -33,6 +33,7 @@ platform_speed = 10
 score = 0
 lives = 3
 current_level = 1
+platform_color = ORANGE  # Initialize platform color
 
 # Functions for screens
 def start_screen():
@@ -73,6 +74,9 @@ def show_text_on_screen(text, font_size, y_position):
     text_render = font.render(text, True, WHITE)
     text_rect = text_render.get_rect(center=(WIDTH // 2, y_position))
     screen.blit(text_render, text_rect)
+
+def change_platform_color():
+    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 # Main game loop
 start_screen()
@@ -117,6 +121,7 @@ while game_running:
         current_level += 1
         ball_pos = [WIDTH // 2, HEIGHT // 2]
         ball_speed = [random.uniform(2, 4), random.uniform(2, 4)]  # Randomize the ball speed
+        platform_color = change_platform_color()
 
     # Check if the ball falls off the screen
     if ball_pos[1] >= HEIGHT:
@@ -141,7 +146,7 @@ while game_running:
     pygame.draw.circle(screen, WHITE, (int(ball_pos[0]), int(ball_pos[1])), BALL_RADIUS)
 
     # Draw the platform
-    pygame.draw.rect(screen, ORANGE, (int(platform_pos[0]), int(platform_pos[1]), PLATFORM_WIDTH, PLATFORM_HEIGHT))
+    pygame.draw.rect(screen, platform_color, (int(platform_pos[0]), int(platform_pos[1]), PLATFORM_WIDTH, PLATFORM_HEIGHT))
 
     # Display information
     info_line_y = 10  # Adjust the vertical position as needed
