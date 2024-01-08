@@ -39,7 +39,8 @@ platform_color = ORANGE  # Initialize platform color
 def start_screen():
     screen.fill(BLACK)
     show_text_on_screen("Bouncing Ball Game", 50, HEIGHT // 4)
-    show_text_on_screen("Press any key to start...", 30, HEIGHT // 2)
+    show_text_on_screen("Press any key to start...", 30, HEIGHT // 3)
+    show_text_on_screen("Move the platform with arrow keys...", 30, HEIGHT // 2)
     pygame.display.flip()
     wait_for_key()
 
